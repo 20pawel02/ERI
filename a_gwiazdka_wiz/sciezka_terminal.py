@@ -8,7 +8,8 @@ def wzor_mat(pozycja, cel):
     Funkcja obliczająca odległość euklidesową między dwoma punktami.
     Używana jako heurystyka w algorytmie A*.
     """
-    return math.sqrt((pozycja[0] - cel[0])**2 + (pozycja[1] - cel[1])**2)
+    return math.sqrt((pozycja[0] - cel[0]) ** 2 + (pozycja[1] - cel[1]) ** 2)
+
 
 # Funkcja wczytująca mapę z pliku tekstowego
 def wczytaj_grid(nazwa_pliku):
@@ -39,6 +40,7 @@ def wczytaj_grid(nazwa_pliku):
         print("Błąd w formacie pliku. Upewnij się, że zawiera tylko 0 i 1.")
         return None
 
+
 # Implementacja algorytmu A* do znajdowania najkrótszej ścieżki
 def a_gwiazdka(grid, start, cel):
     """
@@ -51,7 +53,7 @@ def a_gwiazdka(grid, start, cel):
     pola = {}  # słownik przechowujący informację o poprzednich polach
     g_wynik = {start: 0}  # koszt dojścia do danego pola
     f_wynik = {start: wzor_mat(start, cel)}  # przewidywany całkowity koszt
-    
+
     # Definiujemy możliwe ruchy (góra, dół, lewo, prawo)
     ruchy = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
@@ -92,6 +94,7 @@ def a_gwiazdka(grid, start, cel):
 
     return None  # Nie znaleziono ścieżki
 
+
 def save_grid_with_path(grid, output_file):
     """
     Zapisuje siatkę z zaznaczoną ścieżką do pliku tekstowego.
@@ -104,27 +107,29 @@ def save_grid_with_path(grid, output_file):
         for row in grid:
             f.write(' '.join(map(str, row)) + '\n')
 
+
 # Główna część programu
 if __name__ == "__main__":
     # Wczytujemy mapę z pliku
     grid = wczytaj_grid('pliki/grid.txt')
-    
+
     if grid is not None:
         # Tworzymy kopię gridu dla ścieżki
         grid_sciezka = np.copy(grid)
-        
+
         # Definiujemy punkty start i cel
         start = (19, 0)  # punkt startowy, lewy dolny rog
         cel = (0, 19)  # punkt końcowy, prawy gorny rog
-        
+
         # Szukamy ścieżki użytkując algorytm A*
         sciezka = a_gwiazdka(grid_sciezka, start, cel)
-        
+
         # Wyświetlamy wynik
         if sciezka:
             print("Znaleziono ścieżke")
             # Zapisujemy grid ze ścieżką do nowego pliku
-            save_grid_with_path(grid_sciezka, 'pliki/grid_with_path.txt') # utworzenie nowego pliku grid z zaznaczona sciezka (dla bezpieczenstwa)
-            print(grid_sciezka) # wyprintowanie grid z zaznaczona sciezka
+            save_grid_with_path(grid_sciezka,
+                                'pliki/grid_with_path.txt')  # utworzenie nowego pliku grid z zaznaczona sciezka (dla bezpieczenstwa)
+            print(grid_sciezka)  # wyprintowanie grid z zaznaczona sciezka
         else:
             print("Nie znaleziono ścieżki")
