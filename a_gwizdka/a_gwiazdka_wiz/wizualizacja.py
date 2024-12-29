@@ -1,6 +1,5 @@
 import pygame
 import numpy as np
-
 # Import functions from the original script
 from sciezka_terminal import wczytaj_grid, a_gwiazdka
 
@@ -15,6 +14,26 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 GRAY = (128, 128, 128)
+
+
+def show_message(message):
+    """
+    Wyświetla komunikat w oknie aplikacji.
+    """
+    pygame.init()
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption('A* - Wizualizacja graficzna algorytmu')
+    clock = pygame.time.Clock()
+
+    font = pygame.font.Font(None, 36)  # Czcionka
+    text = font.render(message, True, RED)
+    text_rect = text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
+
+    screen.fill(WHITE)  # Wyczyść ekran
+    screen.blit(text, text_rect)  # Wyświetl tekst
+    pygame.display.flip()  # Odśwież ekran
+
+    pygame.time.delay(3000)  # Wyświetl komunikat przez 3 sekundy
 
 
 class PathVisualization:
@@ -102,10 +121,9 @@ class PathVisualization:
                 # Pause for a short duration between steps
                 pygame.time.delay(80)
 
-                # Clear the path rect
-                pygame.draw.rect(self.screen, GREEN, path_rect)
-
-
+        else:
+            # Wyświetl komunikat o błędzie w przypadku braku ścieżki
+            show_message("Nie znaleziono ścieżki")
 
     def run(self):
         running = True
@@ -137,7 +155,6 @@ class PathVisualization:
             self.clock.tick(60)
 
         pygame.quit()
-        
 
 
 if __name__ == "__main__":
