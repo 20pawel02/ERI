@@ -98,7 +98,7 @@ def a_gwiazdka(grid, start, cel):
 def save_grid_with_path(grid, output_file):
     """
     Zapisuje siatkę z zaznaczoną ścieżką do pliku tekstowego.
-    
+
     Args:
         grid (numpy.ndarray): Siatka z zaznaczoną ścieżką
         output_file (str): Ścieżka do pliku wyjściowego
@@ -112,7 +112,8 @@ def komunikat_o_zakonczeniu_programu():
     if sciezka:
         print("Znaleziono ścieżke")
         # Zapisujemy grid ze ścieżką do nowego pliku
-        save_grid_with_path(grid_sciezka, 'pliki/grid_with_path.txt')  # utworzenie nowego pliku grid z zaznaczona sciezka (dla bezpieczenstwa)
+        save_grid_with_path(grid_sciezka,
+                            'pliki/grid_with_path.txt')  # utworzenie nowego pliku grid z zaznaczona sciezka (dla bezpieczenstwa)
         print(grid_sciezka)  # wyprintowanie grid z zaznaczona sciezka
     else:
         print("Nie znaleziono ścieżki")

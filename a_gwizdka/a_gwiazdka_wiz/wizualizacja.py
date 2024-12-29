@@ -4,9 +4,9 @@ import numpy as np
 # Import functions from the original script
 from sciezka_terminal import wczytaj_grid, a_gwiazdka
 
-# Screen dimensions
+# wymiary okna aplikacji
 SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 800
+SCREEN_HEIGHT = 600
 GRID_FILE = 'pliki/grid.txt'
 
 # Colors
@@ -19,9 +19,10 @@ GRAY = (128, 128, 128)
 
 class PathVisualization:
     def __init__(self):
+        self.path_coordinates = None
         pygame.init()
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-        pygame.display.set_caption('A* - Wizualizacja graficzna algorytmu') 
+        pygame.display.set_caption('A* - Wizualizacja graficzna algorytmu')
         self.clock = pygame.time.Clock()
 
         # Load grid
@@ -104,6 +105,8 @@ class PathVisualization:
                 # Clear the path rect
                 pygame.draw.rect(self.screen, GREEN, path_rect)
 
+
+
     def run(self):
         running = True
         path_completed = False
@@ -134,6 +137,7 @@ class PathVisualization:
             self.clock.tick(60)
 
         pygame.quit()
+        
 
 
 if __name__ == "__main__":
