@@ -6,7 +6,7 @@ from sciezka_terminal import wczytaj_grid, a_gwiazdka
 
 # Screen dimensions
 SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_HEIGHT = 800
 GRID_FILE = 'pliki/grid.txt'
 
 # Colors
@@ -14,7 +14,6 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
 GRAY = (128, 128, 128)
 
 
@@ -22,7 +21,7 @@ class PathVisualization:
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-        pygame.display.set_caption('A* Path Finding Visualization')
+        pygame.display.set_caption('A* - Wizualizacja graficzna algorytmu') 
         self.clock = pygame.time.Clock()
 
         # Load grid
