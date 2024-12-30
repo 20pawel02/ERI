@@ -58,9 +58,9 @@ def a_gwiazdka(grid, start, cel):
     ruchy = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
     while lista:
-        # Znajdujemy element z najniższym priorytetem
-        lista.sort(key=lambda x: x[0])
-        _, obecny = lista.pop(0)
+        # Znajdujemy element z najniższym priorytetem (ostatnie minimalne oszacowanie)
+        lista.sort(key=lambda x: x[0], reverse=True)
+        _, obecny = lista.pop()
 
         if obecny == cel:
             # Znaleziono cel - odtwarzamy ścieżkę
@@ -98,10 +98,6 @@ def a_gwiazdka(grid, start, cel):
 def save_grid_with_path(grid, output_file):
     """
     Zapisuje siatkę z zaznaczoną ścieżką do pliku tekstowego.
-
-    Args:
-        grid (numpy.ndarray): Siatka z zaznaczoną ścieżką
-        output_file (str): Ścieżka do pliku wyjściowego
     """
     with open(output_file, 'w') as f:
         for row in grid:
